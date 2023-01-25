@@ -1,0 +1,48 @@
+<script>
+  const countDown = document.querySelector("#countdown");
+  updateCountdown();
+
+  setInterval(() => updateCountdown(), 1000);
+
+  function updateCountdown() {
+    const now = new Date();
+    const release = new Date(Date.UTC(2023, 1, 23, 16, 0, 0));
+    const timeRemaining = Number(release) - Number(now);
+
+    const dayDiff = Math.floor(timeRemaining / 86400000);
+    const hourDiff = Math.floor((timeRemaining % 86400000) / 3600000);
+    const minuteDiff = Math.floor((timeRemaining % 3600000) / 60000);
+    const secondDiff = Math.floor((timeRemaining % 60000) / 1000);
+
+    if (timeRemaining < 0) {
+      countDown.parentElement.innerHTML = "Countdown Finished!\n👋";
+      return;
+    }
+
+    countDown.innerHTML =
+      dayDiff > 0
+        ? `${dayDiff}d ${hourDiff}h ${minuteDiff}m ${secondDiff}s`
+        : `${hourDiff}h ${minuteDiff}m ${secondDiff}s`;
+  }
+</script>
+
+<p>Release in <span id="countdown"></span></p>
+
+<style>
+  p {
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f8c059;
+  }
+
+  span {
+    color: #f7604b;
+  }
+
+  @media screen and (max-width: 400px) {
+    span {
+      display: block;
+    }
+  }
+</style>
