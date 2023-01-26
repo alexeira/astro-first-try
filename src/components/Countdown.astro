@@ -1,12 +1,12 @@
 <script>
-  const countDown = document.querySelector("#countdown");
+  const countDown = document.getElementById("countdown");
   updateCountdown();
 
   setInterval(() => updateCountdown(), 1000);
 
   function updateCountdown() {
     const now = new Date();
-    const release = new Date(Date.UTC(2023, 1, 23, 16, 0, 0));
+    const release = new Date(Date.UTC(23, 11, 31, 23, 0, 0, 0));
     const timeRemaining = Number(release) - Number(now);
 
     const dayDiff = Math.floor(timeRemaining / 86400000);
@@ -14,12 +14,12 @@
     const minuteDiff = Math.floor((timeRemaining % 3600000) / 60000);
     const secondDiff = Math.floor((timeRemaining % 60000) / 1000);
 
-    if (timeRemaining < 0) {
+    if (timeRemaining < 0 && countDown && countDown.parentElement) {
       countDown.parentElement.innerHTML = "Countdown Finished!\n👋";
       return;
     }
 
-    countDown.innerHTML =
+    countDown!.innerHTML =
       dayDiff > 0
         ? `${dayDiff}d ${hourDiff}h ${minuteDiff}m ${secondDiff}s`
         : `${hourDiff}h ${minuteDiff}m ${secondDiff}s`;
