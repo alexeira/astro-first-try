@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import Container from "../layouts/Container.astro";
 import Countdown from "../components/Countdown.astro";
+import Todo from "../components/Todo";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -48,6 +49,8 @@ import Countdown from "../components/Countdown.astro";
   <section class="instructions">
     <h2>Update Countdown</h2>
     <Countdown />
+    <h2>Todo</h2>
+    <Todo client:only />
   </section>
 </Container>
 
